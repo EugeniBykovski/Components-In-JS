@@ -1,1 +1,16 @@
-/*# sourceMappingURL=main.css.map */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #c2c2c2;
+}
+
+.header {
+  padding: 2rem;
+  background-color: #333333;
+}
+
+.footer {
+  padding: 2rem;
+  background-color: #333333;
+}/*# sourceMappingURL=main.css.map */

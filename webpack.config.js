@@ -1,24 +1,22 @@
 const path = require('path')
-
-const HTMLPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const srcFolder = 'src'
 
 module.exports = {
   entry: './src/js/index.js', // задаем корневой файл
+  devServer: {
+    port: 3001,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ // плагин нужен, чтобы входной точкой для приложения был index.html файл
+      template: path.join(__dirname, srcFolder, 'index.html'),
+    }),
+  ],
   output: {
     filename: 'bundle.[chunkhash].js', // будет генерироть числовое рандомное значение
     path: path.resolve(__dirname + '/build/js') // то, куда все будет билдится
   },
-  devtools: 'source-map', // чтобы в консоли разработчика мы могли посмотреть каждый файл и из чего он состоит
-  devServer: {
-    port: 3001
-  },
-  plugins: [
-    new HTMLPlugin({ // плагин нужен, чтобы входной точкой для приложения был index.html файл
-      template: 'index.html' 
-    }),
-    new CleanWebpackPlugin()
-  ],
+  devtool: 'source-map',
   module: {
     rules: [ // правила, которые помогают импортировать и использовать такие же модули js в css файлах
       {
@@ -34,9 +32,29 @@ module.exports = {
         ]
       },
       {
-        test: /\.svg$/,
-        loader: ['svg-inline-loader']
-      },
+        test: /\.(scss)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      }
     ]
-  }
+  },
 }
