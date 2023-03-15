@@ -1,0 +1,27 @@
+{
+  "name": "component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "satrt": "webpack-dev-server -- mode development --open",
+    "build": "webpack --mode prodction"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "json-server": "^0.17.2",
+    "sass": "^1.59.3",
+    "style-loader": "^3.3.2",
+    "styled-components": "^5.3.9",
+    "svg-inline-loader": "^0.8.2",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.12.0"
+  }
+}
